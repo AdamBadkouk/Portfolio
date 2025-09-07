@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, Github, ExternalLink, Mail, User, MessageSquare, Linkedin, Sun, Moon } from 'lucide-react';
+import { ChevronDown, Github, ExternalLink, Mail, User, MessageSquare, Linkedin, Sun, Moon, Menu, X, Download } from 'lucide-react';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showResumeInfo, setShowResumeInfo] = useState(false);
 
   useEffect(() => {
@@ -71,42 +72,100 @@ function App() {
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900' : 'bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-100'}`}>
       {/* Navbar */}
-      <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-md border shadow-lg rounded-md px-8 py-3 transition-colors duration-300 ${isDarkMode ? 'bg-slate-800/30 border-purple-500/30' : 'bg-white/20 border-white/30'}`}>
-        <div className="flex items-center space-x-8">
-          <div className="flex space-x-6">
-            {[
-              { id: 'hero', label: 'Home' },
-              { id: 'about', label: 'About' },
-              { id: 'skills', label: 'Skills' },
-              { id: 'projects', label: 'Projects' },
-              { id: 'contact', label: 'Contact' }
-            ].map(({ id, label }) => (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className={`text-sm font-medium transition-all duration-200 px-3 py-1 rounded-full ${
-                  activeSection === id 
-                    ? isDarkMode ? 'text-white bg-purple-600 shadow-md rounded-md' : 'text-white bg-[#d0cede] shadow-md rounded-md'
-                    : isDarkMode ? 'text-purple-200 hover:bg-purple-800/30' : 'text-gray-700 hover:bg-white/20'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
+      <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-md border shadow-lg rounded-md px-3 sm:px-8 py-2 sm:py-3 transition-colors duration-300 ${isDarkMode ? 'bg-slate-800/30 border-purple-500/30' : 'bg-white/20 border-white/30'}`}>
+        <div className="flex items-center justify-between">
+          {/* Desktop Navigation - Hidden on screens < 355px */}
+          <div className="hidden min-[355px]:flex items-center space-x-2 sm:space-x-8">
+            <div className="flex space-x-1 sm:space-x-6">
+              {[
+                { id: 'hero', label: 'Home' },
+                { id: 'about', label: 'About' },
+                { id: 'skills', label: 'Skills' },
+                { id: 'projects', label: 'Projects' },
+                { id: 'contact', label: 'Contact' }
+              ].map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => scrollToSection(id)}
+                  className={`text-xs sm:text-sm font-medium transition-all duration-200 px-2 sm:px-3 py-1 rounded-full ${
+                    activeSection === id 
+                      ? 'text-white bg-[#d0cede] shadow-md rounded-md'
+                      : isDarkMode ? 'text-white' : 'text-gray-700'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div className={`w-px h-4 sm:h-6 mx-1 sm:mx-2 ${isDarkMode ? 'bg-purple-400/50' : 'bg-gray-400'}`}></div>
+            <button
+              onClick={toggleDarkMode}
+              className={`p-1 sm:p-2 rounded-md transition-all duration-200 ${
+                isDarkMode ? 'text-white' : 'text-gray-700'
+              }`}
+            >
+              {isDarkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
+            </button>
           </div>
-          <div className={`w-px h-6 mx-2 ${isDarkMode ? 'bg-purple-400/50' : 'bg-gray-400'}`}></div>
-          <button
-            onClick={toggleDarkMode}
-            className={`p-2 rounded-md transition-all duration-200 ${
-              isDarkMode 
-                ? 'text-yellow-400 hover:bg-purple-800/30' 
-                : 'text-gray-700 hover:bg-white/20'
-            }`}
-          >
-            {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
+
+          {/* Mobile Navigation - Visible only on screens < 355px */}
+          <div className="flex min-[355px]:hidden items-center space-x-3">
+            <button
+              onClick={toggleDarkMode}
+              className={`p-1 rounded-md transition-all duration-200 ${
+                isDarkMode ? 'text-white' : 'text-gray-700'
+              }`}
+            >
+              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`p-1 rounded-md transition-all duration-200 ${
+                isDarkMode ? 'text-white' : 'text-gray-700'
+              }`}
+            >
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay - Visible only on screens < 355px */}
+      {isMobileMenuOpen && (
+        <div className="min-[355px]:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)}>
+          <div 
+            className={`fixed top-20 left-1/2 transform -translate-x-1/2 w-48 rounded-lg shadow-xl border transition-all duration-300 ${
+              isDarkMode ? 'bg-slate-800/95 border-purple-500/30' : 'bg-white/95 border-white/30'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-4 space-y-2">
+              {[
+                { id: 'hero', label: 'Home' },
+                { id: 'about', label: 'About' },
+                { id: 'skills', label: 'Skills' },
+                { id: 'projects', label: 'Projects' },
+                { id: 'contact', label: 'Contact' }
+              ].map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => {
+                    scrollToSection(id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                    activeSection === id 
+                      ? 'text-white bg-[#d0cede]'
+                      : isDarkMode ? 'text-white' : 'text-gray-700'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -120,36 +179,46 @@ function App() {
             <p className={`text-xl sm:text-2xl lg:text-3xl mb-12 font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Full-Stack Developer | MERN Stack, Next.js, Angular & Laravel
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto">
               <button
                 onClick={() => scrollToSection('projects')}
-                className="group px-8 py-4 bg-[#d0cede] text-white font-semibold rounded-md shadow-lg hover:shadow-xl hover:bg-[#c4b8d1] transform hover:scale-105 transition-all duration-300"
+                className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-purple-800/30 border-purple-500/40 text-purple-100 hover:bg-purple-700/40' 
+                    : 'bg-white/20 border-white/30 text-gray-700 hover:bg-white/30'
+                }`}
               >
-                <span className="flex items-center">
+                <span className="flex items-center justify-center">
                   View Projects
                   <ChevronDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
                 </span>
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
-                className={`px-8 py-4 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   isDarkMode 
                     ? 'bg-purple-800/30 border-purple-500/40 text-purple-100 hover:bg-purple-700/40' 
                     : 'bg-white/20 border-white/30 text-gray-700 hover:bg-white/30'
                 }`}
               >
-                Contact Me
+                <span className="flex items-center justify-center">
+                  Contact Me
+                  <ChevronDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
+                </span>
               </button>
               <button
                 onClick={handleResumeClick}
                 disabled
-                className={`px-8 py-4 backdrop-blur-md border font-semibold rounded-md shadow-lg opacity-50 cursor-not-allowed ${
+                className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg opacity-50 cursor-not-allowed ${
                   isDarkMode 
-                    ? 'bg-purple-800/20 border-purple-600/30 text-purple-300' 
-                    : 'bg-white/20 border-white/30 text-gray-500'
+                    ? 'bg-purple-800/30 border-purple-500/40 text-purple-100' 
+                    : 'bg-white/20 border-white/30 text-gray-700'
                 }`}
               >
-                Download Resume
+                <span className="flex items-center justify-center">
+                  Download Resume
+                  <Download className="ml-2 w-5 h-5" />
+                </span>
               </button>
             </div>
             {showResumeInfo && (
