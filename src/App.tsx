@@ -70,7 +70,7 @@ function App() {
   ];
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gradient-to-br from-[#161925] via-[#24334C] to-[#371D33]' : 'bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-100'}`}>
+    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gradient-to-br from-[#161925] via-[#24334C] to-[#371D33]' : 'bg-gradient-to-br from-blue-100 via-violet-200 to-indigo-100'}`}>
       {/* Navbar */}
       <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-md border shadow-lg rounded-md px-3 sm:px-8 py-2 sm:py-3 transition-colors duration-300 ${isDarkMode ? 'bg-[#24334C]/30 border-[#1F4964]/30' : 'bg-white/20 border-white/30'}`}>
         <div className="flex items-center justify-between">
@@ -89,7 +89,7 @@ function App() {
                   onClick={() => scrollToSection(id)}
                   className={`text-xs sm:text-sm font-medium transition-all duration-200 px-2 sm:px-3 py-1 rounded-full ${
                     activeSection === id 
-                      ? 'text-white bg-[#d0cede] shadow-md rounded-md'
+                      ? `text-white shadow-md rounded-md ${isDarkMode ? 'bg-slate-400' : 'bg-violet-200'}`
                       : isDarkMode ? 'text-white' : 'text-gray-700'
                   }`}
                 >
@@ -155,7 +155,7 @@ function App() {
                   }}
                   className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     activeSection === id 
-                      ? 'text-white bg-[#d0cede]'
+                      ? `text-white ${isDarkMode ? 'bg-slate-400' : 'bg-violet-200'}`
                       : isDarkMode ? 'text-white' : 'text-gray-700'
                   }`}
                 >
@@ -184,8 +184,8 @@ function App() {
                 onClick={() => scrollToSection('projects')}
                 className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   isDarkMode 
-                    ? 'bg-[#d0cede]/30 border-[#d0cede]/40 text-white hover:bg-[#d0cede]/50' 
-                    : 'bg-[#d0cede]/30 border-[#d0cede]/40 text-gray-800 hover:bg-[#d0cede]/50'
+                    ? `bg-slate-400/30 border-slate-400/40 text-white hover:bg-slate-400/50`
+                      : 'bg-violet-200/30 border-violet-200/40 text-gray-800 hover:bg-violet-200/50'
                 }`}
               >
                 <span className="flex items-center justify-center">
@@ -197,8 +197,8 @@ function App() {
                 onClick={() => scrollToSection('contact')}
                 className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   isDarkMode 
-                    ? 'bg-[#d0cede]/30 border-[#d0cede]/40 text-white hover:bg-[#d0cede]/50' 
-                    : 'bg-[#d0cede]/30 border-[#d0cede]/40 text-gray-800 hover:bg-[#d0cede]/50'
+                    ? `bg-slate-400/30 border-slate-400/40 text-white hover:bg-slate-400/50`
+                      : 'bg-violet-200/30 border-violet-200/40 text-gray-800 hover:bg-violet-200/50'
                 }`}
               >
                 <span className="flex items-center justify-center">
@@ -211,8 +211,8 @@ function App() {
                 disabled
                 className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg opacity-50 cursor-not-allowed ${
                   isDarkMode 
-                    ? 'bg-[#d0cede]/30 border-[#d0cede]/40 text-white' 
-                    : 'bg-[#d0cede]/30 border-[#d0cede]/40 text-gray-800'
+                    ? 'bg-slate-400/30 border-slate-400/40 text-white'
+                      : 'bg-violet-200/30 border-violet-200/40 text-gray-800'
                 }`}
               >
                 <span className="flex items-center justify-center">
@@ -252,7 +252,7 @@ function App() {
               : 'bg-white/20 border-white/30'
           }`}>
             <div className={`prose prose-lg max-w-none ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              <blockquote className="border-l-4 border-[#d0cede] pl-6 text-lg leading-relaxed">
+              <blockquote className={`border-l-4 pl-6 text-lg leading-relaxed ${isDarkMode ? 'border-slate-400' : 'border-violet-200'}`}>
               <p className="mb-4">
                 I specialize in the <strong>MERN stack (MongoDB, Express.js, React, Node.js)
                 </strong> and <strong>Next.js</strong>, enabling me to build dynamic, scalable, and modern web applications.
@@ -296,7 +296,7 @@ function App() {
                 {['React', 'Next.js', 'Angular', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS' , 'Bootstrap'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm bg-[#d0cede]/30 rounded-md border border-white/30 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -315,7 +315,7 @@ function App() {
                 {['Node.js', 'Express.js', 'Laravel', 'PHP', 'MongoDB', 'MySQL', 'REST APIs'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm bg-[#d0cede]/30 rounded-md border border-white/30 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -334,7 +334,7 @@ function App() {
                 {['JavaScript', 'TypeScript', 'Python', 'C++', 'PHP'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm bg-[#d0cede]/30 rounded-md border border-white/30 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -353,7 +353,7 @@ function App() {
                 {['Git', 'GitHub', 'GitLab', 'Docker', 'WSL', 'packet tracer', 'Postman', 'Figma'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm bg-[#d0cede]/30 rounded-md border border-white/30 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -362,7 +362,7 @@ function App() {
                 {['Windows', 'Linux'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm bg-[#d0cede]/30 rounded-md border border-white/30 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -381,7 +381,7 @@ function App() {
                 {['Security Fundamentals', 'Network Security', 'Vulnerability Assessment', 'Security Best Practices'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm bg-[#d0cede]/30 rounded-md border border-white/30 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -400,7 +400,7 @@ function App() {
                 {['Professional Certifications', 'Digital Badges', 'Industry Recognition'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm bg-[#d0cede]/30 rounded-md border border-white/30 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -411,7 +411,7 @@ function App() {
                 href="https://www.credly.com/users/adambadkouk/badges"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 bg-[#d0cede] text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm font-medium"
+                className={`inline-flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm font-medium ${isDarkMode ? 'bg-slate-400' : 'bg-violet-200'}`}
               >
                 View My Badges
                 <ExternalLink className="w-4 h-4 ml-2" />
@@ -454,7 +454,7 @@ function App() {
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className={`px-3 py-1 text-sm bg-[#d0cede]/30 rounded-md border border-white/30 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                        className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
                       >
                         {tech}
                       </span>
@@ -482,7 +482,7 @@ function App() {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-4 py-2 bg-[#d0cede] text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    className={`flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${isDarkMode ? 'bg-slate-400' : 'bg-violet-200'}`}
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View
@@ -515,7 +515,7 @@ function App() {
             <div className="flex flex-col space-y-4 max-w-xs mx-auto">
               <a
                 href="mailto:badkoukadam@gmail.com"
-                className="flex items-center px-6 py-4 bg-white/30 hover:bg-white/40 border border-white/30 rounded-md transition-all duration-200 group"
+                className={`flex items-center px-6 py-4 border rounded-md transition-all duration-200 group ${isDarkMode ? 'bg-slate-400/30 hover:bg-slate-400/40 border-slate-400/30' : 'bg-white/30 hover:bg-white/40 border-white/30'}`}
               >
                 <svg className={`w-6 h-6 mr-4 ${isDarkMode ? 'text-white' : 'text-gray-700'}`} viewBox="0 0 24 24" fill="currentColor">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -527,7 +527,7 @@ function App() {
               </a>
               <a
                 href="mailto:AdamBadkouk@outlook.com"
-                className="flex items-center px-6 py-4 bg-white/30 hover:bg-white/40 border border-white/30 rounded-md transition-all duration-200 group"
+                className={`flex items-center px-6 py-4 border rounded-md transition-all duration-200 group ${isDarkMode ? 'bg-slate-400/30 hover:bg-slate-400/40 border-slate-400/30' : 'bg-white/30 hover:bg-white/40 border-white/30'}`}
               >
                 <svg className={`w-6 h-6 mr-4 ${isDarkMode ? 'text-white' : 'text-gray-700'}`} viewBox="0 0 24 24" fill="currentColor">
                   <path d="M0 0h11.377v11.372H0V0zm12.623 0H24v11.372H12.623V0zM0 12.623h11.377V24H0V12.623zm12.623 0H24V24H12.623V12.623z"/>
@@ -538,7 +538,7 @@ function App() {
                 href="https://www.linkedin.com/in/adambadkouk/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-6 py-4 bg-white/30 hover:bg-white/40 border border-white/30 rounded-md transition-all duration-200 group"
+                className={`flex items-center px-6 py-4 border rounded-md transition-all duration-200 group ${isDarkMode ? 'bg-slate-400/30 hover:bg-slate-400/40 border-slate-400/30' : 'bg-white/30 hover:bg-white/40 border-white/30'}`}
               >
                 <Linkedin className={`w-6 h-6 mr-4 ${isDarkMode ? 'text-white' : 'text-gray-700'}`} />
                 <span className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>LinkedIn</span>
@@ -547,7 +547,7 @@ function App() {
                 href="https://github.com/AdamBadkouk"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-6 py-4 bg-white/30 hover:bg-white/40 border border-white/30 rounded-md transition-all duration-200 group"
+                className={`flex items-center px-6 py-4 border rounded-md transition-all duration-200 group ${isDarkMode ? 'bg-slate-400/30 hover:bg-slate-400/40 border-slate-400/30' : 'bg-white/30 hover:bg-white/40 border-white/30'}`}
               >
                 <Github className={`w-6 h-6 mr-4 ${isDarkMode ? 'text-white' : 'text-gray-700'}`} />
                 <span className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>GitHub</span>
