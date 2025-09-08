@@ -4,14 +4,14 @@ A modern, responsive portfolio website showcasing my skills and projects as a Fu
 
 ##  Features
 
-- ** Modern Design**: Clean, professional interface with glassmorphism effects
-- ** Dark/Light Mode**: Seamless theme switching with enhanced purple-themed dark mode
-- ** Fully Responsive**: Optimized for all device sizes and screen resolutions
-- ** Smooth Animations**: Engaging transitions and hover effects
-- ** Smart Navigation**: Active section highlighting with smooth scrolling
-- ** Project Showcase**: Interactive project cards with live demos and GitHub links
-- ** Contact Integration**: Direct links to email, LinkedIn, and GitHub
-- ** Skills Display**: Organized skill categories with visual tags
+- Modern Design : Clean, Minimal, professional interface with glassmorphism effects
+- Dark/Light Mode : Seamless theme switching with enhanced purple-themed dark mode
+- Fully Responsive : Optimized for all device sizes and screen resolutions
+- Smooth Animations : Engaging transitions and hover effects
+- Smart Navigation : Active section highlighting with smooth scrolling
+- Project Showcase : Interactive project cards with live demos and GitHub links
+- Contact Integration : Direct links to email, LinkedIn, and GitHub
+- Skills Display : Organized skill categories with visual tags
 
 ## Tech Stack
 

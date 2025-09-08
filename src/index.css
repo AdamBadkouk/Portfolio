@@ -13,20 +13,131 @@
 }
 
 @layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 1s ease-in-out;
+  /* Hero Animations */
+  .animate-hero-entrance {
+    animation: heroEntrance 1.5s ease-out;
   }
   
-  @keyframes fadeIn {
-    from {
+  .animate-slide-up {
+    animation: slideUp 1s ease-out;
+    animation-fill-mode: both;
+  }
+  
+  /* Section Animations */
+  .animate-section-slide-in {
+    animation: sectionSlideIn 1s ease-out;
+  }
+  
+  /* Floating Background */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  /* Letter Animations */
+  .animate-letter-spectacular {
+    animation: letterSpectacular 2s ease-out;
+    animation-fill-mode: both;
+    display: inline-block;
+  }
+  
+  .animate-rainbow-text {
+    animation: rainbowShift 3s ease-in-out infinite;
+  }
+  
+  /* Interactive Elements */
+  .animate-card-hover {
+    animation: cardHover 0.8s ease-out;
+    animation-fill-mode: both;
+  }
+  
+
+  
+  /* Keyframes */
+  @keyframes heroEntrance {
+    0% {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(50px) scale(0.9);
     }
-    to {
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
       opacity: 1;
       transform: translateY(0);
     }
   }
+  
+  @keyframes sectionSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+  
+  @keyframes letterSpectacular {
+    0% {
+      opacity: 0;
+      transform: translateY(50px) rotateX(90deg) scale(0.5);
+      filter: blur(10px);
+    }
+    50% {
+      transform: translateY(-10px) rotateX(0deg) scale(1.1);
+      filter: blur(0px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg) scale(1);
+      filter: blur(0px);
+    }
+  }
+  
+  @keyframes rainbowShift {
+    0% { color: #ff6b6b; }
+    16.66% { color: #4ecdc4; }
+    33.33% { color: #45b7d1; }
+    50% { color: #96ceb4; }
+    66.66% { color: #feca57; }
+    83.33% { color: #ff9ff3; }
+    100% { color: #ff6b6b; }
+  }
+  
+  @keyframes cardHover {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+
 }
 
 /* Custom scrollbar */

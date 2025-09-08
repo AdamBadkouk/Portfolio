@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Github, ExternalLink, Mail, User, MessageSquare, Linkedin, Sun, Moon, Menu, X, Download } from 'lucide-react';
 
 function App() {
@@ -6,6 +6,8 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showResumeInfo, setShowResumeInfo] = useState(false);
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,9 +39,49 @@ function App() {
       }
     };
 
+    // Intersection Observer for scroll animations
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const sectionId = entry.target.id || entry.target.getAttribute('data-animate');
+          if (sectionId) {
+            if (entry.isIntersecting) {
+              // Add to visible sections when entering viewport
+              setVisibleSections(prev => new Set([...prev, sectionId]));
+            } else {
+              // Remove from visible sections when leaving viewport
+              setVisibleSections(prev => {
+                const newSet = new Set(prev);
+                newSet.delete(sectionId);
+                return newSet;
+              });
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    );
+
+    // Observe all sections with data-animate attribute
+    const animatedElements = document.querySelectorAll('[data-animate]');
+    animatedElements.forEach(el => {
+      if (observerRef.current) {
+        observerRef.current.observe(el);
+      }
+    });
+
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Call once on mount
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -179,7 +221,7 @@ function App() {
             <p className={`text-xl sm:text-2xl lg:text-3xl mb-12 font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Full-Stack Developer | MERN Stack, Next.js, Angular & Laravel
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto animate-slide-up" style={{animationDelay: '2s'}}>
               <button
                 onClick={() => scrollToSection('projects')}
                 className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
@@ -235,8 +277,8 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      <section id="about" className="py-32 px-4 sm:px-6 lg:px-8" data-animate="about">
+        <div className={`max-w-4xl mx-auto transition-all duration-1000 ${visibleSections.has('about') ? 'animate-section-slide-in' : 'opacity-0 translate-y-10'}`}>
           <div className="text-center mb-16">
             <h2 className={`text-4xl sm:text-5xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-black'}`}>
               About Me
@@ -273,8 +315,8 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <section id="skills" className="py-32 px-4 sm:px-6 lg:px-8" data-animate="skills">
+        <div className={`max-w-6xl mx-auto transition-all duration-1000 ${visibleSections.has('skills') ? 'animate-section-slide-in' : 'opacity-0 translate-y-10'}`}>
           <div className="text-center mb-16">
             <h2 className={`text-4xl sm:text-5xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-black'}`}>
               Skills & Technologies
@@ -400,7 +442,7 @@ function App() {
                 {['Professional Certifications', 'Digital Badges', 'Industry Recognition'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-purple-100/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -422,8 +464,8 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section id="projects" className="py-32 px-4 sm:px-6 lg:px-8" data-animate="projects">
+        <div className={`max-w-7xl mx-auto transition-all duration-1000 ${visibleSections.has('projects') ? 'animate-section-slide-in' : 'opacity-0 translate-y-10'}`}>
           <div className="text-center mb-16">
             <h2 className={`text-4xl sm:text-5xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-black'}`}>
               Featured Projects
@@ -437,11 +479,12 @@ function App() {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className={`group backdrop-blur-md border rounded-md p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ${
+                className={`group backdrop-blur-md border rounded-md p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 animate-card-hover ${
                   isDarkMode 
                     ? 'bg-[#24334C]/40 border-[#1F4964]/30' 
                     : 'bg-white/20 border-white/30'
                 }`}
+                style={{animationDelay: `${index * 0.2}s`}}
               >
                 <div className="mb-6">
                   <h3 className={`text-2xl font-bold mb-3 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>
@@ -495,8 +538,8 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8" data-animate="contact">
+        <div className={`max-w-4xl mx-auto transition-all duration-1000 ${visibleSections.has('contact') ? 'animate-section-slide-in' : 'opacity-0 translate-y-10'}`}>
           <div className="text-center mb-16">
             <h2 className={`text-4xl sm:text-5xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-black'}`}>
               Get In Touch
