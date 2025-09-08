@@ -221,7 +221,7 @@ function App() {
             <p className={`text-xl sm:text-2xl lg:text-3xl mb-12 font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Full-Stack Developer | MERN Stack, Next.js, Angular & Laravel
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto animate-slide-up" style={{animationDelay: '2s'}}>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto animate-slide-up" style={{animationDelay: '0s'}}>
               <button
                 onClick={() => scrollToSection('projects')}
                 className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
