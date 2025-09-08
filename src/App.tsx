@@ -9,6 +9,11 @@ function App() {
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
 
+  // Scroll to top on page load/reload
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
@@ -131,7 +136,7 @@ function App() {
                   onClick={() => scrollToSection(id)}
                   className={`text-xs sm:text-sm font-medium transition-all duration-200 px-2 sm:px-3 py-1 rounded-full ${
                     activeSection === id 
-                      ? `text-white shadow-md rounded-md ${isDarkMode ? 'bg-slate-400' : 'bg-violet-200'}`
+                      ? `text-white shadow-md rounded-md ${isDarkMode ? 'bg-slate-400' : 'bg-[#dbe3fe]'}`
                       : isDarkMode ? 'text-white' : 'text-gray-700'
                   }`}
                 >
@@ -197,7 +202,7 @@ function App() {
                   }}
                   className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     activeSection === id 
-                      ? `text-white ${isDarkMode ? 'bg-slate-400' : 'bg-violet-200'}`
+                      ? `text-white ${isDarkMode ? 'bg-slate-400' : 'bg-[#dbe3fe]'}`
                       : isDarkMode ? 'text-white' : 'text-gray-700'
                   }`}
                 >
@@ -213,12 +218,12 @@ function App() {
       <section id="hero" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in">
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6">
-              <span className={isDarkMode ? 'text-white' : 'text-gray-800'}>
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 animate-title-entrance" style={{animationDelay: '0.2s'}}>
+              <span className={`font-sans ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                 Adam Badkouk
               </span>
             </h1>
-            <p className={`text-xl sm:text-2xl lg:text-3xl mb-12 font-light ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <p className={`text-xl sm:text-2xl lg:text-3xl mb-12 font-light animate-title-entrance ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{animationDelay: '0.2s'}}>
               Full-Stack Developer | MERN Stack, Next.js, Angular & Laravel
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto animate-slide-up" style={{animationDelay: '0s'}}>
@@ -227,7 +232,7 @@ function App() {
                 className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   isDarkMode 
                     ? `bg-slate-400/30 border-slate-400/40 text-white hover:bg-slate-400/50`
-                      : 'bg-violet-200/30 border-violet-200/40 text-gray-800 hover:bg-violet-200/50'
+                      : 'bg-[#dbe3fe]/30 border-[#dbe3fe]/40 text-gray-800 hover:bg-[#dbe3fe]/50'
                 }`}
               >
                 <span className="flex items-center justify-center">
@@ -240,7 +245,7 @@ function App() {
                 className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   isDarkMode 
                     ? `bg-slate-400/30 border-slate-400/40 text-white hover:bg-slate-400/50`
-                      : 'bg-violet-200/30 border-violet-200/40 text-gray-800 hover:bg-violet-200/50'
+                      : 'bg-[#dbe3fe]/30 border-[#dbe3fe]/40 text-gray-800 hover:bg-[#dbe3fe]/50'
                 }`}
               >
                 <span className="flex items-center justify-center">
@@ -254,7 +259,7 @@ function App() {
                 className={`group w-full sm:w-52 p-3.5 backdrop-blur-md border font-semibold rounded-md shadow-lg opacity-50 cursor-not-allowed ${
                   isDarkMode 
                     ? 'bg-slate-400/30 border-slate-400/40 text-white'
-                      : 'bg-violet-200/30 border-violet-200/40 text-gray-800'
+                      : 'bg-[#dbe3fe]/30 border-[#dbe3fe]/40 text-gray-800'
                 }`}
               >
                 <span className="flex items-center justify-center">
@@ -294,7 +299,7 @@ function App() {
               : 'bg-white/20 border-white/30'
           }`}>
             <div className={`prose prose-lg max-w-none ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              <blockquote className={`border-l-4 pl-6 text-lg leading-relaxed ${isDarkMode ? 'border-slate-400' : 'border-violet-200'}`}>
+              <blockquote className={`border-l-4 pl-6 text-lg leading-relaxed ${isDarkMode ? 'border-slate-400' : 'border-[#dbe3fe]'}`}>
               <p className="mb-4">
                 I specialize in the <strong>MERN stack (MongoDB, Express.js, React, Node.js)
                 </strong> and <strong>Next.js</strong>, enabling me to build dynamic, scalable, and modern web applications.
@@ -338,7 +343,7 @@ function App() {
                 {['React', 'Next.js', 'Angular', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS' , 'Bootstrap'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-[#dbe3fe]/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -357,7 +362,7 @@ function App() {
                 {['Node.js', 'Express.js', 'Laravel', 'PHP', 'MongoDB', 'MySQL', 'REST APIs'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-[#dbe3fe]/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -376,7 +381,7 @@ function App() {
                 {['JavaScript', 'TypeScript', 'Python', 'C++', 'PHP'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-[#dbe3fe]/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -395,16 +400,16 @@ function App() {
                 {['Git', 'GitHub', 'GitLab', 'Docker', 'WSL', 'packet tracer', 'Postman', 'Figma'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-[#dbe3fe]/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
                 ))}
-                <div className="w-px h-6 bg-gray-300 mx-1 self-center"></div>
+                <div className="w-px h-6 bg-black mx-1 self-center"></div>
                 {['Windows', 'Linux'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-[#dbe3fe]/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -423,7 +428,7 @@ function App() {
                 {['Security Fundamentals', 'Network Security', 'Vulnerability Assessment', 'Security Best Practices'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-[#dbe3fe]/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -442,7 +447,7 @@ function App() {
                 {['Professional Certifications', 'Digital Badges', 'Industry Recognition'].map((skill, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-purple-100/30 text-gray-700'}`}
+                    className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-[#dbe3fe]/30 text-gray-700'}`}
                   >
                     {skill}
                   </span>
@@ -453,7 +458,7 @@ function App() {
                 href="https://www.credly.com/users/adambadkouk/badges"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm font-medium ${isDarkMode ? 'bg-slate-400' : 'bg-violet-200'}`}
+                className={`inline-flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm font-medium ${isDarkMode ? 'bg-slate-400' : 'bg-[#dbe3fe]'}`}
               >
                 View My Badges
                 <ExternalLink className="w-4 h-4 ml-2" />
@@ -497,7 +502,7 @@ function App() {
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-violet-200/30 text-gray-700'}`}
+                        className={`px-3 py-1 text-sm rounded-md border border-white/30 ${isDarkMode ? 'bg-slate-400/30 text-gray-300' : 'bg-[#dbe3fe]/30 text-gray-700'}`}
                       >
                         {tech}
                       </span>
@@ -525,7 +530,7 @@ function App() {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${isDarkMode ? 'bg-slate-400' : 'bg-violet-200'}`}
+                    className={`flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${isDarkMode ? 'bg-slate-400' : 'bg-[#dbe3fe]'}`}
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View
