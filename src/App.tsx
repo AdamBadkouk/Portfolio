@@ -307,7 +307,7 @@ function App() {
                 I am highly skilled in version control and collaboration tools, including <strong>Git, GitHub, GitLab, and Jira</strong>. I also have experience with <strong>Agile</strong> and <strong>Scrum</strong> methodologies, along with practical knowledge of <strong>Docker</strong> and <strong>Kubernetes</strong>, enabling me to streamline development workflows and deliver high-quality projects efficiently.
                 </p>
                 <p className="mb-4">
-                Alongside web development, I actively explore <strong>Python</strong> and <strong>C++</strong> through personal projects, expanding my technical expertise and experimenting with innovative problem-solving approaches.
+                Alongside web development, I actively explore <strong>Python</strong> and <strong>C++</strong> through personal projects and <strong> contributing to open source</strong> expanding my technical expertise and experimenting with innovative problem-solving approaches.
                 </p>
               </blockquote>
             </div>
