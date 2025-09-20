@@ -136,7 +136,7 @@ function App() {
                   onClick={() => scrollToSection(id)}
                   className={`text-xs sm:text-sm font-medium transition-all duration-200 px-2 sm:px-3 py-1 rounded-full ${
                     activeSection === id 
-                      ? `text-white shadow-md rounded-md ${isDarkMode ? 'bg-slate-400' : 'bg-slate-300'}`
+                      ? `text-white shadow-md rounded-md ${isDarkMode ? 'bg-slate-400' : 'bg-[#ddd6fe]'}`
                       : isDarkMode ? 'text-white' : 'text-gray-700'
                   }`}
                 >
@@ -202,7 +202,7 @@ function App() {
                   }}
                   className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     activeSection === id 
-                      ? `text-white ${isDarkMode ? 'bg-slate-400' : 'bg-slate-300'}`
+                      ? `text-white ${isDarkMode ? 'bg-slate-400' : 'bg-[#ddd6fe]'}`
                       : isDarkMode ? 'text-white' : 'text-gray-700'
                   }`}
                 >
@@ -224,7 +224,7 @@ function App() {
               </span>
             </h1>
             <p className={`text-xl sm:text-2xl lg:text-3xl mb-12 font-light animate-title-entrance ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} style={{animationDelay: '0.2s'}}>
-              Full-Stack Developer | MERN Stack | Next.js, Angular & Laravel
+              Full-Stack Developer | MERN Stack, Next.js, Angular & Laravel
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto animate-slide-up" style={{animationDelay: '0s'}}>
               <button
@@ -300,15 +300,19 @@ function App() {
           }`}>
             <div className={`prose prose-lg max-w-none ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               <blockquote className={`border-l-4 pl-6 text-lg leading-relaxed ${isDarkMode ? 'border-slate-400' : 'border-[#dbe3fe]'}`}>
-                <p className="mb-4">
-                I am a <strong>Full-Stack Developer</strong> specializing in the <strong>MERN stack (MongoDB, Express.js, React, Node.js)</strong> and <strong>Next.js</strong>, creating dynamic and scalable web applications. I also have experience with <strong>Angular</strong> for structured frontend development and <strong>Laravel</strong> for building robust backend APIs, with practical experience designing and managing <strong>SQL</strong> and <strong>NoSQL</strong> databases.
-                </p>
-                <p className="mb-4">
-                I am highly skilled in version control and collaboration tools, including <strong>Git, GitHub, GitLab, and Jira</strong>. I also have experience with <strong>Agile</strong> and <strong>Scrum</strong> methodologies, along with practical knowledge of <strong>Docker</strong> and <strong>Kubernetes</strong>, enabling me to streamline development workflows and deliver high-quality projects efficiently.
-                </p>
-                <p className="mb-4">
-                Alongside web development, I actively explore <strong>Python</strong> and <strong>C++</strong> through personal projects and <strong> contributing to open source</strong> expanding my technical expertise and experimenting with innovative problem-solving approaches.
-                </p>
+              <p className="mb-4">
+                I specialize in the <strong>MERN stack (MongoDB, Express.js, React, Node.js)
+                </strong> and <strong>Next.js</strong>, enabling me to build dynamic, scalable, and modern web applications.
+              </p>
+              <p className="mb-4">
+                I also have experience with <strong>Angular</strong> for structured frontend development and strong proficiency in <strong>Laravel</strong> for developing robust APIs and backend solutions.
+              </p>
+              <p className="mb-4">
+                Alongside web development, I actively explore <strong>Python</strong> and <strong>C++</strong> through personal projects, allowing me to expand my technical expertise and experiment with problem-solving approaches.
+              </p>
+              <p>
+                I am well-versed in version control and collaboration tools, including <strong>Git, GitHub, and GitLab</strong>.
+              </p>
               </blockquote>
             </div>
           </div>
@@ -355,7 +359,7 @@ function App() {
              }`}>
               <h3 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>Backend Development</h3>
               <div className="flex flex-wrap gap-2">
-                {['Node.js', 'Express.js', 'Laravel', 'MongoDB', 'Sql', 'NoSQL' /*'REST APIs'*/].map((skill, index) => (
+                {['Node.js', 'Express.js', 'Laravel', 'MongoDB', 'MySQL', /*'REST APIs'*/].map((skill, index) => (
                   <span
                     key={index}
                     className={`px-3 py-1 text-sm rounded-md ${isDarkMode ? 'text-gray-300 bg-gray-700/30' : 'text-gray-700 bg-gray-200/30'}`}
@@ -393,7 +397,7 @@ function App() {
              }`}>
               <h3 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>Tools & Technologies</h3>
               <div className="flex flex-wrap gap-2">
-                {['Git', 'GitHub', 'GitLab', 'Jira' ,'Docker', 'Kubernetes' , 'Postman', 'Figma','WSL', 'packet tracer'].map((skill, index) => (
+                {['Git', 'GitHub', 'GitLab', 'Docker', 'WSL', 'packet tracer', 'Postman', 'Figma'].map((skill, index) => (
                   <span
                     key={index}
                     className={`px-3 py-1 text-sm rounded-md ${isDarkMode ? 'text-gray-300 bg-gray-700/30' : 'text-gray-700 bg-gray-200/30'}`}
@@ -432,7 +436,7 @@ function App() {
              }`}>
               <h3 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>Cybersecurity</h3>
               <div className="flex flex-wrap gap-2 mb-6">
-                {['Security Principles', 'Networking Concepts', 'Pentesting', 'Network Vulnerabilities'].map((skill, index) => (
+                {['Security Principles', 'Networking Concepts', 'Pentesting Fundamentals', 'Cryptography'].map((skill, index) => (
                   <span
                     key={index}
                     className={`px-3 py-1 text-sm rounded-md ${isDarkMode ? 'text-gray-300 bg-gray-700/30' : 'text-gray-700 bg-gray-200/30'}`}
@@ -445,7 +449,7 @@ function App() {
                 href="https://tryhackme.com/p/xceeep"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm font-medium ${isDarkMode ? 'bg-slate-400' : 'bg-slate-300'}`}
+                className={`inline-flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm font-medium ${isDarkMode ? 'bg-slate-400' : 'bg-[#ddd6fe]'}`}
               >
                 View My TryHackMe Profile
                 <ExternalLink className="w-4 h-4 ml-2" />
@@ -473,7 +477,7 @@ function App() {
                 href="https://www.credly.com/users/adambadkouk/badges"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm font-medium ${isDarkMode ? 'bg-slate-400' : 'bg-slate-300'}`}
+                className={`inline-flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm font-medium ${isDarkMode ? 'bg-slate-400' : 'bg-[#ddd6fe]'}`}
               >
                 View My Badges
                 <ExternalLink className="w-4 h-4 ml-2" />
@@ -545,7 +549,7 @@ function App() {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${isDarkMode ? 'bg-slate-400' : 'bg-slate-300'}`}
+                    className={`flex items-center px-4 py-2 text-white rounded-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${isDarkMode ? 'bg-slate-400' : 'bg-[#ddd6fe]'}`}
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View
