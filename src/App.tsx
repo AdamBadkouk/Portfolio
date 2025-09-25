@@ -3,9 +3,6 @@ import {
   ChevronDown,
   Github,
   ExternalLink,
-  Mail,
-  User,
-  MessageSquare,
   Linkedin,
   Sun,
   Moon,
@@ -374,27 +371,19 @@ function App() {
               <blockquote
                 className={`border-l-4 pl-6 text-lg leading-relaxed ${isDarkMode ? "border-slate-400" : "border-[#dbe3fe]"}`}
               >
-                <p className="mb-4">
-                  I specialize in the{" "}
-                  <strong>
-                    MERN stack (MongoDB, Express.js, React, Node.js)
-                  </strong>{" "}
-                  and <strong>Next.js</strong>,
-                  I also have experience with <strong>Laravel</strong> for
-                  developing robust APIs and backend solutions, with practical
-                  experience designing and managing <strong>SQL</strong> and{" "}
-                  <strong>NoSQL</strong> databases
-                </p>
-                <p className="mb-4">
-                  Alongside web development, I actively explore{" "}
-                  <strong>Python</strong> and <strong>C++</strong> through
-                  personal projects, allowing me to expand my technical
-                  expertise and experiment with problem-solving approaches.
-                </p>
                 <p>
-                  I am well-versed in version control and collaboration tools,
-                  including <strong>Git, GitHub, and GitLab</strong>.
+                  I am a <strong>Full-Stack Developer</strong> specializing in the <strong>MERN stack</strong> (MongoDB, Express.js, React, Node.js) and <strong>Next.js</strong>. I also have experience with <strong>Laravel</strong> for building robust backend APIs, with practical experience designing and managing <strong>SQL</strong> and <strong>NoSQL databases</strong>.  
+                </p> <br></br>
+                <p>
+                  I am highly skilled in <strong>version control</strong> and collaboration tools, including <strong>Git</strong>, <strong>GitHub</strong>, <strong>GitLab</strong>, and <strong>Jira</strong>. I also have experience with <strong>UML</strong>, <strong>Agile Project Management</strong> and <strong>Scrum methodologies</strong>, along with practical knowledge of <strong>Docker</strong> and <strong>Kubernetes</strong>, enabling me to streamline development workflows and deliver high-quality projects efficiently.
+                </p> <br></br>
+                <p>
+                  Alongside web development, I actively explore <strong>Python</strong> and <strong>C++</strong> through personal projects and contributing to <strong>open source</strong>, expanding my technical expertise and experimenting with innovative problem-solving approaches.  
                 </p>
+                  
+                
+                
+
               </blockquote>
             </div>
           </div>
@@ -526,6 +515,7 @@ function App() {
                   "GitLab",
                   "Docker",
                   "WSL",
+                  "UML",
                   "packet tracer",
                   "Postman",
                   "Figma",
